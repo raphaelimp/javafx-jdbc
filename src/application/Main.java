@@ -10,12 +10,15 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
+	
+	private static Scene mainScene;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainView.fxml"));
 			ScrollPane sPane = loader.load();
-			Scene mainScene = new Scene(sPane);
+			mainScene = new Scene(sPane);
 			sPane.setFitToHeight(true);
 			sPane.setFitToWidth(true);
 			primaryStage.setScene(mainScene);
@@ -28,5 +31,9 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public static Scene getMainScene() {
+		return mainScene;
 	}
 }
