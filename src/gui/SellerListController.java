@@ -1,7 +1,7 @@
 package gui;
 
-import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -16,9 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -26,8 +24,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Seller;
 import model.services.SellerService;
@@ -48,6 +44,15 @@ public class SellerListController implements Initializable, DataChangeListener{
 	
 	@FXML
 	private TableColumn<Seller, String> tcName;
+	
+	@FXML
+	private TableColumn<Seller, String> tcEmail;
+	
+	@FXML
+	private TableColumn<Seller, Date> tcBirthDate;
+	
+	@FXML
+	private TableColumn<Seller, Double> tcBaseSalary;
 	
 	@FXML
 	private TableColumn<Seller, Seller> tcEdit;
@@ -75,6 +80,11 @@ public class SellerListController implements Initializable, DataChangeListener{
 	private void initializeNodes() {
 		tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		tcBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+		Utils.formatTableColumnDate(tcBirthDate, "dd/MM/yyyy");
+		tcBaseSalary.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
+		Utils.formatTableCOlumnDouble(tcBaseSalary, 2);
 		
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tvSeller.prefHeightProperty().bind(stage.heightProperty() );
