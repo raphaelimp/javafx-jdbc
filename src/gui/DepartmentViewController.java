@@ -52,7 +52,7 @@ public class DepartmentViewController implements Initializable {
 	public void onBtNewAction(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);
 		Department department = new Department();
-		createDialogForm(department,   "/gui/DepartmentForm.fxml", parentStage);
+		createDialogForm(department, "/gui/DepartmentForm.fxml", parentStage);
 	}
 	
 	@Override
@@ -84,6 +84,7 @@ public class DepartmentViewController implements Initializable {
 			
 			DepartmentFormController controller = loader.getController();
 			controller.setDepartment(department);
+			controller.setDepartmentService(new DepartmentService());
 			controller.updateFormData();
 			
 			Stage diaologStage = new Stage();
